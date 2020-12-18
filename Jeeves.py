@@ -1,4 +1,5 @@
 import json
+import os
 
 import discord
 import requests
@@ -112,5 +113,5 @@ async def mythic_plus(ctx):
     await ctx.send(f"{url} <- 주간 쐐기 루트, 던전 별 MDT 문자열 import")
 
 
-
-bot.run("TOKEN")
+access_token = os.environ["BOT_TOKEN"]
+bot.run(access_token)
