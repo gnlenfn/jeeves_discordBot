@@ -2,7 +2,7 @@ import json
 import os
 import discord
 import requests
-from discord.ext import commands, tasks
+from discord.ext import commands, tasks, channel
 
 bot = commands.Bot(command_prefix="!")
 
@@ -35,8 +35,16 @@ WCL 로그 검색
 
 [!쐐기루트]
 주간 쐐기 루트 MDT 확인
+
+[!쐐기보상]
+쐐기 드랍 및 주간보상 템렙
 ```
     """)
+
+# 인사
+@bot.command(name="하이")
+async def hello(ctx):
+    await ctx.send(ctx.author + " 어서오고")
 
 # 입창!!
 @bot.command(name="민용", description="그는 입창이다.")
@@ -89,8 +97,14 @@ async def affix(ctx):
 {data["affix_details"][1]["description"]}
 # {data["affix_details"][2]["name"]}
 {data["affix_details"][2]["description"]}
-# {data["affix_details"][3]["name"]}
-{data["affix_details"][3]["description"]}
+# 교만
+우두머리가 아닌 쫄 카운트의 20%마다 교만의 현신을 생성합니다.
+- 스킬1/ 교만함 폭발: 2초 마다 60m 내의 플레이어 모두에게 피해를 주고 중첩 당 40%를 증가시키는 교만함 폭발 디버프를 겁니다.
+
+- 스킬2/ 공격적인 과시: 탱커를 제외한 4명 중 1명에게 디버프를 겁니다. 대상은 4초 후에 발사되는 빨간색 미사일이 생성됩니다. 
+미사일에 맞으면 2초 간 기절하고 높은 피해를 입습니다. 
+
+- 교만의 현신을 처치한 경우 1분동안 크기가 커지고 이속 60%, 공격력 30%, 초당 마나 5% 증가의 버프를 얻습니다.
         ```
 
         """)
@@ -110,6 +124,13 @@ async def search_wcl(ctx, *args):
 async def mythic_plus(ctx):
     url = "https://raider.io/news/151-the-weekly-route-tyrannical-prideful-basics"
     await ctx.send(f"{url} <- 주간 쐐기 루트, 던전 별 MDT 문자열 import")
+
+# 쐐기 보상
+@bot.command(name="쐐기보상")
+async def item_drop(ctx):
+    await channel.send(file=discord.File("./images/mythic_plus_drop.png"))
+
+
 
 
 access_token = os.environ["BOT_TOKEN"]
