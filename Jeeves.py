@@ -1,8 +1,8 @@
-import discord
-from discord.ext import commands, tasks
 import json
+
+import discord
 import requests
-import locale
+from discord.ext import commands, tasks
 
 bot = commands.Bot(command_prefix="!")
 
