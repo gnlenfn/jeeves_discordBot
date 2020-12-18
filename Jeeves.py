@@ -113,4 +113,4 @@ async def mythic_plus(ctx):
 
 
 
-bot.run("Nzg3MzQwNDk1NDExODcxNzU0.X9Th-g.vRDe_wHaFgm0nn22e0lmRk3eqzI")
+bot.run("TOKEN")
