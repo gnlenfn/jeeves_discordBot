@@ -2,7 +2,7 @@ import json
 import os
 import discord
 import requests
-from discord.ext import commands, tasks, channel
+from discord.ext import commands, tasks
 
 bot = commands.Bot(command_prefix="!")
 
@@ -16,9 +16,6 @@ async def on_ready():
 async def info(ctx):
     await ctx.send("""
 ```ini
-[!민용]
-그는...
-
 [!레이더 (이름) (서버)]
 쐐기 레이더 검색
 아즈샤라는 서버 안써도 무관
@@ -44,12 +41,18 @@ WCL 로그 검색
 # 인사
 @bot.command(name="하이")
 async def hello(ctx):
-    await ctx.send(ctx.author + " 어서오고")
+    await ctx.send(ctx.message.author.mention + " 어서오고")
 
 # 입창!!
-@bot.command(name="민용", description="그는 입창이다.")
+@bot.command(name="민용")
 async def 민용(ctx):
     await ctx.send("입창!")
+@bot.command(name="정민")
+async def 정민(ctx):
+    await ctx.send("청주 거부 유지")
+@bot.command(name="연성")
+async def 연성(ctx):
+    await ctx.send("사무관 (진)")
 
 # 레이더 검색
 @bot.command(name="레이더", description="레이더 검색")
@@ -88,7 +91,7 @@ async def affix(ctx):
 
     response = requests.get('https://raider.io/api/v1/mythic-plus/affixes', headers=headers, params=params)
     data = response.json()
-    await ctx.send(data["title"] + "\n" + "\n")
+    await ctx.send(data["title"])
     await ctx.send(f"""
 ```md
 # {data["affix_details"][0]["name"]}
@@ -128,10 +131,10 @@ async def mythic_plus(ctx):
 # 쐐기 보상
 @bot.command(name="쐐기보상")
 async def item_drop(ctx):
-    await channel.send(file=discord.File("./images/mythic_plus_drop.png"))
+    await ctx.send(file=discord.File("./images/mythic_plus_drop.png"))
 
 
 
-
-access_token = os.environ["BOT_TOKEN"]
-bot.run(access_token)
+bot.run("Nzg3MzQwNDk1NDExODcxNzU0.X9Th-g.FfYVCwyrz0JNKfX7X9snmz0Lu6w")
+#access_token = os.environ["BOT_TOKEN"]
+#bot.run(access_token)
