@@ -135,6 +135,6 @@ async def item_drop(ctx):
 
 
 
-bot.run("Nzg3MzQwNDk1NDExODcxNzU0.X9Th-g.FfYVCwyrz0JNKfX7X9snmz0Lu6w")
-#access_token = os.environ["BOT_TOKEN"]
-#bot.run(access_token)
+
+access_token = os.environ["BOT_TOKEN"]
+bot.run(access_token)
