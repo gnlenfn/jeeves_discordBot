@@ -133,7 +133,28 @@ async def mythic_plus(ctx):
 async def item_drop(ctx):
     await ctx.send(file=discord.File("./images/mythic_plus_drop.png"))
 
+# 영혼재
+@bot.command(name="영혼재")
+async def soul_ash(ctx):
+    print("request soul ash!")
+    await ctx.send("""
+    ```md
+    - 1등급(190): 1250
+    - 2등급(210): 2000
+    - 3등급(225): 3200
+    - 4등급(235): 5150
+    ```
+    """)
 
+############################# 노래 재생 ##############################################
+@bot.command()
+async def join(ctx):
+    channel = ctx.message.author.voice.channel
+    await channel.connect()
+
+@bot.command()
+async def leave(ctx):
+    await ctx.voice_client.disconnect()
 
 
 access_token = os.environ["BOT_TOKEN"]
