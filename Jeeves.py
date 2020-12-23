@@ -10,7 +10,7 @@ bot = commands.Bot(command_prefix="!")
 async def on_ready():
     print("--- 연결 성공 ---")
     print("bot name: 리브스")
-    print("ID: {bot.user.id}")
+    print(f"ID: {bot.user.id}")
 
 @bot.command(name="명령어", description="명령어 안내")
 async def info(ctx):
@@ -68,10 +68,18 @@ async def raider(ctx, *args):
     except:
         await ctx.send("*** 검색 실패 ***")
 
+def create_access_token(client_id, client_secret, region = 'us'):
+    data = { 'grant_type': 'client_credentials' }
+    response = requests.post('https://%s.battle.net/oauth/token' % region, data=data, auth=(client_id, client_secret))
+    return response.json()
+
+response = create_access_token(os.environ["CLIENT_ID"], os.environ["CLIENT_SECRET"])
+access_token = response['access_token']
 # 토큰 가격
 @bot.command(name="토큰", description="오늘의 토큰 가격")
 async def token(ctx):
-    url = "https://kr.api.blizzard.com/data/wow/token/index?namespace=dynamic-kr&locale=ko_KR&access_token=USCXiOLLG2QPYOBq2XMkFFSAE28I7H08IR"
+    print("request token price!")
+    url = "https://kr.api.blizzard.com/data/wow/token/index?namespace=dynamic-kr&locale=ko_KR&access_token="+access_token
     res = requests.get(url)
     data = res.json()
     price = format(int(data["price"]) // 10000, ",")
