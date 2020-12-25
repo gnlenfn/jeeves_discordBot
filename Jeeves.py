@@ -53,6 +53,12 @@ async def 정민(ctx):
 @bot.command(name="연성")
 async def 연성(ctx):
     await ctx.send("사무관 (진)")
+@bot.command(name="원태")
+async def 원태(ctx):
+    await ctx.send("원조 창동 유지")
+@bot.command(name="노경")
+async def 노경(ctx):
+    await ctx.send("배.노.경")
 
 # 레이더 검색
 @bot.command(name="레이더", description="레이더 검색")
