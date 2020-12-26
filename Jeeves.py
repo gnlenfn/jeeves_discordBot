@@ -46,16 +46,13 @@ async def hello(ctx):
 # 입창!!
 @bot.command(name="민용")
 async def 민용(ctx):
-    await ctx.send("입창!")
+    await ctx.send("이거이거 3시에 돈 바짝벌지")
 @bot.command(name="정민")
 async def 정민(ctx):
-    await ctx.send("청주 거부 유지")
+    await ctx.send("청주 거부 신흥 재력가")
 @bot.command(name="연성")
 async def 연성(ctx):
     await ctx.send("사무관 (진)")
-@bot.command(name="원태")
-async def 원태(ctx):
-    await ctx.send("원조 창동 유지")
 @bot.command(name="노경")
 async def 노경(ctx):
     await ctx.send("배.노.경")
