@@ -35,6 +35,9 @@ WCL 로그 검색
 
 [!쐐기보상]
 쐐기 드랍 및 주간보상 템렙
+
+[!나락]
+나락런 관련 자료 
 ```
     """)
 
@@ -111,14 +114,8 @@ async def affix(ctx):
 {data["affix_details"][1]["description"]}
 # {data["affix_details"][2]["name"]}
 {data["affix_details"][2]["description"]}
-# 교만
-우두머리가 아닌 쫄 카운트의 20%마다 교만의 현신을 생성합니다.
-- 스킬1/ 교만함 폭발: 2초 마다 60m 내의 플레이어 모두에게 피해를 주고 중첩 당 40%를 증가시키는 교만함 폭발 디버프를 겁니다.
-
-- 스킬2/ 공격적인 과시: 탱커를 제외한 4명 중 1명에게 디버프를 겁니다. 대상은 4초 후에 발사되는 빨간색 미사일이 생성됩니다. 
-미사일에 맞으면 2초 간 기절하고 높은 피해를 입습니다. 
-
-- 교만의 현신을 처치한 경우 1분동안 크기가 커지고 이속 60%, 공격력 30%, 초당 마나 5% 증가의 버프를 얻습니다.
+# {data["affix_details"][3]["name"]}
+{data["affix_details"][3]["description"]}
         ```
 
         """)
@@ -156,6 +153,14 @@ async def soul_ash(ctx):
     - 4등급(235): 5150
     ```
     """)
+
+# 나락런
+@bot.command(name="나락")
+async def soul_ash(ctx):
+    print("request The mow!")
+    await ctx.send(file=discord.File("./images/venari.png"))
+    url = "https://goo-gle.tistory.com/194"
+    await ctx.send(f"{url} <- 나락런 (어둠땅 초기 참고)")
 
 ############################# 노래 재생 ##############################################
 @bot.command()
