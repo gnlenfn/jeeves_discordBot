@@ -39,7 +39,7 @@ def wirte_ps_list(username, site, url):
     'https://www.googleapis.com/auth/drive',
     ]
 
-    json_file_name = 'rapid-bricolage-304806-3e0bcf6ba899.json'
+    json_file_name = '../rapid-bricolage-304806-3e0bcf6ba899.json'
     credentials = ServiceAccountCredentials.from_json_keyfile_name(json_file_name, scope)
     gc = gspread.authorize(credentials)
 
