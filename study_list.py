@@ -3,6 +3,12 @@ from discord.ext import commands
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import datetime
+from dotenv import load_dotenv
+import os
+
+load_dotenv(verbose=True,
+            dotenv_path='../.env')
+DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
 
 app = commands.Bot(command_prefix='!')
    
@@ -76,4 +82,4 @@ def get_next_meeting_date():
     return next_meeting.strftime("%Y-%m-%d" + "-" + weekday_dict[next_meeting.weekday()])
 
 
-app.run('ENV')
+app.run(DISCORD_TOKEN)
