@@ -84,4 +84,4 @@ def get_next_meeting_date():
     return next_meeting.strftime("%Y-%m-%d" + "-" + weekday_dict[next_meeting.weekday()])
 
 
-app.run('Nzg3MzQwNDk1NDExODcxNzU0.X9Th-g.dNbEws_FWWwUaXnpisiXj-AMNDQ')
+app.run(DISCORD_TOKEN)
