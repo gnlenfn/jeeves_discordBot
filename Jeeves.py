@@ -3,7 +3,13 @@ import os
 import discord
 import requests
 from discord.ext import commands, tasks
+from dotenv import load_dotenv
 
+load_dotenv(dotenv_path=".env", 
+            verbose=True)
+
+ACCESS_KEY = os.getenv('CLIENT_ID')
+SECRET_KEY = os.getenv('CLIENT_SECRET')
 bot = commands.Bot(command_prefix="!")
 
 @bot.event
@@ -162,16 +168,37 @@ async def soul_ash(ctx):
     url = "https://goo-gle.tistory.com/194"
     await ctx.send(f"{url} <- 나락런 (어둠땅 초기 참고)")
 
-############################# 노래 재생 ##############################################
-@bot.command()
-async def join(ctx):
-    channel = ctx.message.author.voice.channel
-    await channel.connect()
-
-@bot.command()
-async def leave(ctx):
-    await ctx.voice_client.disconnect()
+############################# 스터디 문제목록 만들기 ##############################################
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 
 
-access_token = os.environ["BOT_TOKEN"]
-bot.run(access_token)
+@bot.command(name='문제추가')
+async def add_list(ctx, *args):
+    site, url = args[0], args[1]
+    username = ctx.author.name
+
+    wirte_ps_list(username, site, url)
+    await ctx.send("문제 등록 완료")
+    return username, site, url
+
+
+def wirte_ps_list(username, site, url):
+    scope = [
+    'https://spreadsheets.google.com/feeds',
+    'https://www.googleapis.com/auth/drive',
+    ]
+
+    json_file_name = './rapid-bricolage-304806-3e0bcf6ba899.json'
+    credentials = ServiceAccountCredentials.from_json_keyfile_name(json_file_name, scope)
+    gc = gspread.authorize(credentials)
+
+    spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1WIpKIdRy5y2OSoPtaGZXZKXyb2x3gs63LIWZWDQPjFE/edit?usp=sharing'
+
+    doc = gc.open_by_url(spreadsheet_url)
+
+    worksheet = doc.worksheet('문제목록')
+
+    worksheet.append_row([username, site, url])
+
+bot.run('787340495411871754')
