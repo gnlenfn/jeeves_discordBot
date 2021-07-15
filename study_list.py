@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+import datetime
 
 app = commands.Bot(command_prefix='!')
    
@@ -42,6 +43,37 @@ def wirte_ps_list(username, site, url):
 
     worksheet = doc.worksheet('문제목록')
 
-    worksheet.append_row([username, site, url])  
+    date = get_next_meeting_date()
+    worksheet.append_row([date, username, site, url])  
        
+def next_weekday(d, weekday):
+    days_ahead = weekday - d.weekday()
+    if days_ahead < 0: # Target day already happened this week
+        days_ahead += 7
+    return d + datetime.timedelta(days_ahead)
+
+def get_next_meeting_date():
+    weekday_dict = {0: '월', 1: "화", 2: "수", 3: "목", 4: "금", 5: "토", 6: "일"}
+    today_date = datetime.datetime.today()
+    today_weekday = datetime.datetime.today().weekday()
+    register_hour = datetime.datetime.now().hour
+
+    if 0 < today_weekday < 4:
+        next_meeting = next_weekday(today_date, 4)
+    
+    elif 4 < today_weekday < 7:
+        next_meeting = next_weekday(today_date, 0)
+    
+    elif today_weekday == 0 or today_weekday == 4:
+        if register_hour < 21:
+            next_meeting = datetime.datetime.today()
+        else:
+            if today_weekday == 0:
+                next_meeting = next_weekday(today_date, 4)
+            else:
+                next_meeting = next_weekday(today_date, 0)
+    
+    return next_meeting.strftime("%Y-%m-%d" + "-" + weekday_dict[next_meeting.weekday()])
+
+
 app.run('ENV')
