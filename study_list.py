@@ -23,6 +23,8 @@ async def on_ready():
 async def add_list(ctx, *args):
     site, url = args[0], args[1]
     username = ctx.author.nick
+    if not username:
+        username = ctx.author.name
 
     wirte_ps_list(username, site, url)
     await ctx.send("문제 등록 완료")
@@ -39,7 +41,7 @@ def wirte_ps_list(username, site, url):
     'https://www.googleapis.com/auth/drive',
     ]
 
-    json_file_name = '../rapid-bricolage-304806-3e0bcf6ba899.json'
+    json_file_name = './rapid-bricolage-304806-3e0bcf6ba899.json'
     credentials = ServiceAccountCredentials.from_json_keyfile_name(json_file_name, scope)
     gc = gspread.authorize(credentials)
 
@@ -82,4 +84,4 @@ def get_next_meeting_date():
     return next_meeting.strftime("%Y-%m-%d" + "-" + weekday_dict[next_meeting.weekday()])
 
 
-app.run(DISCORD_TOKEN)
+app.run('Nzg3MzQwNDk1NDExODcxNzU0.X9Th-g.dNbEws_FWWwUaXnpisiXj-AMNDQ')
