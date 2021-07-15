@@ -44,4 +44,4 @@ def wirte_ps_list(username, site, url):
 
     worksheet.append_row([username, site, url])  
        
-app.run('Nzg3MzQwNDk1NDExODcxNzU0.X9Th-g.mKeM2pvOF2MPgjY7Htrn6sxS4FU')
+app.run('ENV')
