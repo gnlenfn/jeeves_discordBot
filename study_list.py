@@ -15,11 +15,15 @@ async def on_ready():
 @app.command(name='문제추가')
 async def add_list(ctx, *args):
     site, url = args[0], args[1]
-    username = ctx.author.name
+    username = ctx.author.nick
 
     wirte_ps_list(username, site, url)
     await ctx.send("문제 등록 완료")
     return username, site, url
+
+@app.command(name="문제목록")
+async def print_url(ctx):
+    await ctx.send("구글스프레드시트:\nhttp://t2m.kr/JeXvW")
 
 
 def wirte_ps_list(username, site, url):
@@ -40,4 +44,4 @@ def wirte_ps_list(username, site, url):
 
     worksheet.append_row([username, site, url])  
        
-app.run('ENV')
+app.run('Nzg3MzQwNDk1NDExODcxNzU0.X9Th-g.mKeM2pvOF2MPgjY7Htrn6sxS4FU')
