@@ -51,7 +51,7 @@ async def on_command_error(ctx, error):
         logger.info(f"##### {ctx.author.name} used wrong command #####")
         await ctx.send("올바른 명령어를 사용하세요")
     else:
-        raise
+        raise error
 
 @app.command(name='명령어')
 async def call_commands(ctx):
