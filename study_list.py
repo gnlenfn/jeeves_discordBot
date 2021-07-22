@@ -55,7 +55,7 @@ async def on_command_error(ctx, error):
 
 @app.command(name='명령어')
 async def call_commands(ctx):
-    logger.info(f"{ctx.author.name} called a command list")
+    logger.info(f"##### {ctx.author.name} ##### called a command list")
     await ctx.send(
 """
 ```md
