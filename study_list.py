@@ -48,7 +48,7 @@ async def on_ready():
 @app.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
-        logger.info(f"##### {ctx.author.name} used wrong command #####")
+        logger.info(f"##### {ctx.author.name} ##### used wrong command")
         await ctx.send("올바른 명령어를 사용하세요")
     else:
         raise error
@@ -80,13 +80,13 @@ async def add_list(ctx, *args):
 
     wirte_ps_list(username, site, url)
     await ctx.send("문제 등록 완료")
-    logger.info(f"##### {ctx.author.name} added one #####")
+    logger.info(f"##### {ctx.author.name} ##### added one")
     return username, site, url
 
 @app.command(name="문제목록")
 async def print_url(ctx):
     await ctx.send("구글스프레드시트:\nhttp://t2m.kr/JeXvW")
-    logger.info(f"##### {ctx.author.name} called list #####")
+    logger.info(f"##### {ctx.author.name} ##### called list")
 
 ########################################################################################
 
